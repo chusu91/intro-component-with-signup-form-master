@@ -49,10 +49,6 @@ button {
   outline: none;
 }
 
-.is-error.hidden {
-  display: none;
-}
-
 .container {
   width: 320px;
   margin: auto;
@@ -73,14 +69,15 @@ button {
   line-height: 1.5;
 }
 
-.accentBtn_container {
+.purple-color-trial-banner {
   margin-top: 50px;
-}
-
-.purple-color-trial-btn {
   width: 100%;
   height: 85px;
   padding: 0 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: var(--color-Blue-accent);
   color: var(--color-white);
   font-size: var(--font-body-size);
@@ -136,6 +133,10 @@ input {
   font-style: italic;
   font-weight: var(--weight-semi-bold);
   color: var(--color-Red);
+}
+
+.hidden {
+  display: none;
 }
 
 input:hover,
@@ -211,7 +212,7 @@ footer {
     width: 550px;
   }
 
-  .purple-color-trial-btn {
+  .purple-color-trial-banner {
     height: 55px;
   }
 

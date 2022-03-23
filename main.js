@@ -5,48 +5,49 @@ const inputFirstName = document.querySelector(".form_first-name");
 const inputLastName = document.querySelector(".form_last-name");
 const inputEmail = document.querySelector(".form_email");
 const inputPassword = document.querySelector(".form_password");
+const errorMsg = document.querySelectorAll(".is-error");
 
 function onHandleSubmit(e) {
   e.preventDefault();
-  checkInput(inputFirstName);
-  checkInput(inputLastName);
-  checkInput(inputPassword);
-  checkEmail(inputEmail);
+  checkInput(inputFirstName, 0);
+  checkInput(inputLastName, 1);
+  checkInput(inputPassword, 3);
+  checkEmail(inputEmail, 2);
 }
 
-function checkInput(input) {
-  const inputContainer = input.parentNode;
+function checkInput(input, i) {
+  //const inputContainer = input.parentNode;
   const inputValue = input.value;
-  const inputCategory = input.placeholder;
-  let error = false;
-
-  if (inputValue == "" && !error) {
+  //const inputCategory = input.placeholder;
+  errorMsg[i].classList.add("hidden");
+  if (inputValue == "") {
     //add &&condtion that span will be added only once..
-
-    const span = document.createElement("span");
-    span.setAttribute("class", "is-error");
-    span.innerText = `${inputCategory} cannot be empty`;
-    inputContainer.appendChild(span); // maybe api that delete the previous sibling node before append???
-    input.style.outline = "2px solid var(--color-Red)";
-    console.log(input);
     input.classList.add("error-icon");
-    error = true;
-    // think how to use variable to all the inputs...
-    //global scope let variable.. changed to true at the end of fuction.. but did not changed in the global scope?
+    input.style.outline = "2px solid var(--color-Red)";
+    errorMsg[i].classList.remove("hidden");
+    // const span = document.createElement("span");
+    // span.setAttribute("class", "is-error");
+    // span.innerText = `${inputCategory} cannot be empty`;
+    // inputContainer.appendChild(span); // maybe api that delete the previous sibling node before append???
+  } else {
+    input.classList.remove("error-icon");
+    errorMsg[i].classList.add("hidden");
+    input.style.outline = "";
   }
 }
 
-function checkEmail(input) {
+function checkEmail(input, i) {
   const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  const inputContainer = input.parentNode;
   const inputValue = input.value;
-  const inputCategory = input.placeholder;
+  errorMsg[i].classList.add("hidden");
   if (!inputValue.match(mailFormat)) {
-    const span = document.createElement("span");
-    span.setAttribute("class", "is-error");
-    span.innerText = `Looks like this is not an Email`;
-    inputContainer.appendChild(span);
+    input.classList.add("error-icon");
     input.style.outline = "2px solid var(--color-Red)";
+    errorMsg[i].classList.remove("hidden");
+  } else {
+    input.classList.remove("error-icon");
+    errorMsg[i].classList.add("hidden");
+    input.style.outline = "";
   }
 }
 
