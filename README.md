@@ -14,7 +14,7 @@ Users should be able to:
 
 ### Screenshot
 
-<img src=/Users/lucy/Desktop/Development/intro-component-with-signup-form-master/images/Screenshot 2022-03-23 at 10.18.11.png>
+<img src="./images/Screenshot 2022-03-23 at 10.18.11.png">
 
 ### Links
 
