@@ -6,19 +6,27 @@ const inputLastName = document.querySelector(".form_last-name");
 const inputEmail = document.querySelector(".form_email");
 const inputPassword = document.querySelector(".form_password");
 
+let errorMsgFirstName = 0;
+let errorMsgLastName;
+let errorMsgEmail;
+let errorMsgPassword;
+
 function onHandleSubmit(e) {
   e.preventDefault();
-  checkInput(inputFirstName);
-  checkInput(inputLastName);
-  checkInput(inputPassword);
-  checkEmail(inputEmail);
+  checkInput(inputFirstName, errorMsgFirstName);
+  checkInput(inputLastName, errorMsgLastName);
+  checkInput(inputPassword, errorMsgEmail);
+  checkEmail(inputEmail, errorMsgPassword);
 }
 
-function checkInput(input) {
+function checkInput(input, errorMsg) {
   const inputContainer = input.parentNode;
   const inputValue = input.value;
-  const inputCategory = input.placeholder; //First Name
+  const inputCategory = input.placeholder;
+
   if (inputValue == "") {
+    //add &&condtion that span will be added only once..
+    //ooops.... outline css dissappered..
     // how to add img to input?? so that placeholder text will be dissapeard?
     //const errorIcon = document.createElement("img");
     //errorIcon.src = "./images/icon-error.svg"
@@ -26,8 +34,11 @@ function checkInput(input) {
     const span = document.createElement("span");
     span.setAttribute("class", "is-error");
     span.innerText = `${inputCategory} cannot be empty`;
-    inputContainer.appendChild(span);
+    inputContainer.appendChild(span); // maybe api that delete the previous sibling node before append???
     input.style.outline = "2px solid var(--color-Red)";
+    errorMsg === 1;
+    console.log(input, errorMsg); // think how to use variable to all the inputs...
+    //global scope let variable.. changed to true at the end of fuction.. but did not changed in the global scope?
   }
 }
 
